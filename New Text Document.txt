@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comment Website</title>
+  <style>
+    /* CSS สำหรับการจัดรูปแบบเว็บไซต์ */
+    #comments {
+      margin-top: 20px;
+    }
+
+    #comment-form input,
+    #comment-form textarea {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #comment-form button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Comment Website</h1>
+
+  <!-- ฟอร์มสำหรับการคอมเมนท์ -->
+  <form id="comment-form">
+    <input type="text" id="name" placeholder="ชื่อ" required>
+    <textarea id="message" placeholder="คอมเมนท์ของคุณ" required></textarea>
+    <button type="submit">ส่งคอมเมนท์</button>
+  </form>
+
+  <!-- เอเลเมนต์ที่ใช้แสดงคอมเมนท์ -->
+  <div id="comments"></div>
+
+  <script>
+    // ฟังก์ชันเพิ่มคอมเมนท์
+    function addComment(event) {
+      event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
+
+      // อ่านค่าจากฟอร์ม
+      var name = document.getElementById("name").value;
+      var message = document.getElementById("message").value;
+
+      // สร้าง element สำหรับคอมเมนท์
+      var commentElement = document.createElement("div");
+      commentElement.innerHTML = "<h3>" + name + "</h3><p>" + message + "</p>";
+
+      // เพิ่มคอมเมนท์ลงในเว็บไซต์
+      document.getElementById("comments").appendChild(commentElement);
+
+      // ล้างฟอร์ม
+      document.getElementById("name").value = "";
+      document.getElementById("message").value = "";
+    }
+
+    // เพิ่ม event listener สำหรับการ submit ฟอร์ม
+    document.getElementById("comment-form").addEventListener("submit", addComment);
+  </script>
+</body>
+</html>
